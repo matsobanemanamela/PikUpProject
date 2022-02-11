@@ -1,17 +1,7 @@
+
 body {
     background: url("/assets/bridge-19513_1920.jpg") no-repeat center center fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    position: absolute;
-    top: 0;
-    left: 0;
-    /* Preserve aspet ratio */
-    min-width: 100%;
-    min-height: 100%;
+ 
 }
 
 img {
@@ -19,7 +9,10 @@ img {
     height: 50px;
 }
 
-section {
+
+
+.card {
+    background-color: rgba(245, 245, 245, 0.4);
     -webkit-box-shadow: 0 15px 20px rgba(0, 0, 0, 0.9);
     -moz-box-shadow: 0 15px 20px rgba(0, 0, 0, 0.9);
     box-shadow: 0 15px 20px rgba(0, 0, 0, 0.9);
@@ -31,10 +24,6 @@ section {
     /* Added */
     margin-bottom: 10px;
     /* Added */
-}
-
-.card {
-    background-color: rgba(245, 245, 245, 0.4);
 }
 
 .card-title {

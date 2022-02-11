@@ -8,6 +8,7 @@ import {ServicesService} from '../pick-up-services/services.service';
 import {Router} from'@angular/router';
 import {ToastrService} from 'ngx-toastr';
 import {NgForm} from '@angular/forms';
+import dateFormat from 'dateformat';
 
 @Component({
   selector: 'app-product-and-service',
@@ -20,6 +21,7 @@ export class ProductAndServiceComponent implements OnInit {
   likeservicemodel : LikeServiceModel;
   commentservicemodel : CommentServiceModel;
   servicemodel : ServiceModel;
+
 
   constructor(private servicesservice : ServicesService,private toaster : ToastrService,private route : Router, private commentservice : CommentServiceService,private likeservice : LikeServiceService ) { }
 
@@ -57,7 +59,6 @@ this.servicesservice.getallService();
 
   onSubmit(){
 
-    let dateFormat = require('dateformat');
     let now = new Date();
    var date =  dateFormat(now, "dddd, mmmm dS, yyyy, h:MM:ss TT");
    var com = document.getElementById("Comments") as HTMLInputElement;
@@ -81,7 +82,6 @@ this.servicesservice.getallService();
 
   onSubmitlikes(servicemodel : ServiceModel){
 
-    let dateFormat = require('dateformat');
     let now = new Date();
    var date =  dateFormat(now, "dddd, mmmm dS, yyyy, h:MM:ss TT");
    var com = document.getElementById("Comments") as HTMLInputElement;

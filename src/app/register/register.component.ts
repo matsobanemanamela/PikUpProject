@@ -4,7 +4,7 @@ import {UserModel} from '../Shared/user-model';
 import {Router} from'@angular/router';
 import {ToastrService} from 'ngx-toastr';
 import {NgForm} from '@angular/forms';
-import { Http, Response } from '@angular/http';
+import {HttpClient, HttpHeaders, HttpRequest,HttpResponse,HttpHeaderResponse} from '@angular/common/http';
 import "rxjs/add/operator/do";
 import { map,mergeMap} from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -28,7 +28,7 @@ userArry : Array<UserModel> = [];
 arr1Length: number;
 isLoginError : boolean = false;
 
-constructor(private userservice : UserServiceService, private route : Router, private toaster : ToastrService,private http: Http) { }
+constructor(private userservice : UserServiceService, private route : Router, private toaster : ToastrService,private http: HttpClient) { }
 
   ngOnInit() {
     
@@ -55,9 +55,7 @@ constructor(private userservice : UserServiceService, private route : Router, pr
     }
   }
     getimage(){
-    for(var x =0;x < this.userArry.length; x++){
-  
-      
+    for(var x =0;x < this.userArry.length; x++){ 
         return this.userArry[x];
       
     }

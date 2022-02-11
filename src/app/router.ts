@@ -21,7 +21,7 @@ import {NotificationComponent} from './notification/notification.component';
 import {ChartsComponent} from './charts/charts.component';
 
 export const appRoutes : Routes =[
-{path: 'homepage', component : HomepageComponent , canActivate:[AuthGuard] },
+{path: 'homepage', component : HomepageComponent ,canActivate:[AuthGuard]  },
 {path : 'login', component : LoginComponent},
 {path: 'register', component : RegisterComponent},
 {path: 'profile', component : ProfileComponent, canActivate:[AuthGuard]},

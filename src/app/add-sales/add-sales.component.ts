@@ -4,7 +4,8 @@ import {ToastrService} from 'ngx-toastr';
 import {NgForm} from '@angular/forms';
 import {ProductModel} from '../pick-up-models/product-model';
 import {ProductServiceService} from '../pick-up-services/product-service.service';
-import { Http, Response } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
+import {  FileUploader } from 'ng2-file-upload/ng2-file-upload';
 import "rxjs/add/operator/do";
 import { map,mergeMap} from 'rxjs/operators';
 const URL = 'http://localhost:3000/files';
@@ -17,20 +18,23 @@ const URL = 'http://localhost:3000/files';
   providers: [ProductServiceService]
 })
 export class AddSalesComponent implements OnInit {
+
   productmodel : ProductModel;
+  productlist : ProductModel[];
+
   Imageurl : string = "/assets/default_profile_image.png";
   fileToUpload : File = null;
 
   selectedFile: File = null;
-fd = new FormData();
+  fd = new FormData();
 
-  constructor(private productservice : ProductServiceService,private toaster : ToastrService,private route : Router,private http: Http) { }
+  constructor(private productservice : ProductServiceService,private toaster : ToastrService,private route : Router,private http: HttpClient) { }
 
   ngOnInit() {
 
-    this.productservice.getspecifiedProducts();
-    this.productservice.getProducts();
-    this.productservice.getalltheProducts();
+    this.productservice.getprod().subscribe((data:any) => { this.productlist = data});
+    this.productservice.getProductsByUserID().subscribe((data:any) => { this.productlist = data});
+    this.productservice.getalltheProducts().subscribe((data:any) => { this.productlist = data});
     this.resetForm();
   }
 
@@ -38,19 +42,19 @@ fd = new FormData();
 
     if(form != null)
     form.reset();
-this.productservice.selectedproduct={
+     this.productmodel={
 
-  ProductID : 0,
-  UserID : +localStorage.getItem("CustomerID"),
-  Productname : '',
-  Categoryname : '',
-  ProductImage : '',
-  NumberofItem : 0,
-  NeworUsed : '',
-  ProductPrice : 0,
-  Comment : ''
+    ProductID : 0,
+    UserID : +localStorage.getItem("CustomerID"),
+    Productname : '',
+    Categoryname : '',
+    ProductImage : '',
+    NumberofItem : 0,
+    NeworUsed : '',
+    ProductPrice : 0,
+    Comment : ''
 
-} 
+   } 
 }
 
 createFormData(event) {
@@ -67,7 +71,7 @@ handleFileInput(file : FileList){
   }
 reader.readAsDataURL(this.fileToUpload);
 console.log(this.fileToUpload.name);
-this.productservice.selectedproduct.ProductImage = this.fileToUpload.name;
+this.productmodel.ProductImage = this.fileToUpload.name;
 }
 
 
@@ -109,8 +113,8 @@ this.productservice.selectedproduct.ProductImage = this.fileToUpload.name;
     })
   }
 
-  showForEdit(productmodel : ProductModel){
-    this.productservice.selectedproduct = Object.assign({}, productmodel);
+  showForEdit(productmodels : ProductModel){
+    this.productmodel = Object.assign({}, productmodels);
   }
 
 

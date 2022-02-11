@@ -1,16 +1,3 @@
-nav {
-    position: absolute;
-    /* top: 30px; */
-    z-index: 999;
-    /* Preserve aspet ratio */
-    min-width: 100%;
-    top: 0;
-    left: 0;
-}
-
-.nav .navbar-nav a {
-    color: white !important;
-}
 
 .images {
     height: 70px;

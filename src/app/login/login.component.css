@@ -54,18 +54,7 @@
     
     body {
         background: url("/assets/bridge-19513_1920.jpg") no-repeat center center fixed;
-        background-position: center;
-        background-repeat: no-repeat;
-        -webkit-background-size: cover;
-        -moz-background-size: cover;
-        -o-background-size: cover;
-        background-size: cover;
-        position: absolute;
-        top: 0;
-        left: 0;
-        /* Preserve aspet ratio */
-        min-width: 100%;
-        min-height: 100%;
+        /* overflow: hidden; */
     }
     
     .card-title {

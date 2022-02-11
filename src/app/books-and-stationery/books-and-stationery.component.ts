@@ -8,6 +8,8 @@ import {BooksService} from '../pick-up-services/books.service';
 import {Router} from'@angular/router';
 import {ToastrService} from 'ngx-toastr';
 import {NgForm} from '@angular/forms';
+//import {} from 'date'
+import dateFormat from 'dateformat';
 
 
 @Component({
@@ -19,13 +21,14 @@ import {NgForm} from '@angular/forms';
 export class BooksAndStationeryComponent implements OnInit {
 
   bookmodel : BooksModel;
+  bookmodelArray : BooksModel[];
  commentBooksmodel : CommentBooksModel;
  likebooksmodel : LikeBooksModel;
   constructor(private likebookservice : LikeBooksService,private commentbookservice : CommentBooksService,private bookservice : BooksService, private toaster : ToastrService,private route : Router) { }
 
   ngOnInit() {
     this.bookservice.getallthebooks();
-    this.bookservice.getspecifiedBook();
+    this.bookservice.getbook().subscribe((data:any) => { this.bookmodelArray = data});;
 // this.commentbookservice.getalltheCommentBooks();
 // this.commentbookservice.getCommentBooks();
     this.resetForm();
@@ -36,7 +39,7 @@ export class BooksAndStationeryComponent implements OnInit {
 
     if(form != null)
     form.reset();
-    this.bookservice.selectedbooking={
+    this.bookmodel={
 
       BookID : 0,
       UserID : +localStorage.getItem("CustomerID"),
@@ -59,7 +62,7 @@ export class BooksAndStationeryComponent implements OnInit {
 
   onSubmit(){
 
-    let dateFormat = require('dateformat');
+   // let dateFormat = require('dateformat');
     let now = new Date();
    var date =  dateFormat(now, "dddd, mmmm dS, yyyy, h:MM:ss TT");
    var com = document.getElementById("Comments") as HTMLInputElement;
@@ -83,7 +86,7 @@ export class BooksAndStationeryComponent implements OnInit {
 
   onSubmitlikes(bookmodel : LikeBooksModel){
 
-    let dateFormat = require('dateformat');
+   // let dateFormat = require('dateformat');
     let now = new Date();
    var date =  dateFormat(now, "dddd, mmmm dS, yyyy, h:MM:ss TT");
    var com = document.getElementById("Comments") as HTMLInputElement;

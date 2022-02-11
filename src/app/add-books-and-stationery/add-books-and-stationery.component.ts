@@ -4,7 +4,7 @@ import {NgForm} from '@angular/forms';
 import {BooksService} from '../pick-up-services/books.service';
 import {Router} from'@angular/router';
 import {ToastrService} from 'ngx-toastr';
-import { Http, Response } from '@angular/http';
+import { HttpClient} from '@angular/common/http';
 import "rxjs/add/operator/do";
 import { map,mergeMap} from 'rxjs/operators';
 const URL = 'http://localhost:3000/files';
@@ -18,16 +18,16 @@ const URL = 'http://localhost:3000/files';
 export class AddBooksAndStationeryComponent implements OnInit {
 
 bookmodel : BooksModel;
+bookmodelArray : BooksModel[];
 Imageurl : string = "/assets/default_profile_image.png";
 fileToUpload : File = null;
 
 selectedFile: File = null;
 fd = new FormData();
-  constructor(private bookservice : BooksService, private toaster : ToastrService,private route : Router,private http: Http) { }
+  constructor(private bookservice : BooksService, private toaster : ToastrService,private route : Router,private http: HttpClient) { }
 
   ngOnInit() {
-    this.bookservice.getbook();
-    this.bookservice.getspecifiedBook();
+    this.bookservice.getbook().subscribe((data:any) => { this.bookmodelArray = data});
 
     this.resetForm();
 
@@ -36,7 +36,7 @@ fd = new FormData();
 
     if(form != null)
     form.reset();
-    this.bookservice.selectedbooking={
+    this.bookmodel={
 
       BookID : 0,
       UserID : +localStorage.getItem("CustomerID"),
@@ -60,7 +60,7 @@ fd = new FormData();
     }
   reader.readAsDataURL(this.fileToUpload);
   console.log(this.fileToUpload.name);
-  this.bookservice.selectedbooking.Image =  this.fileToUpload.name;
+  this.bookmodel.Image =  this.fileToUpload.name;
   }
 
   
@@ -109,7 +109,7 @@ fd = new FormData();
   }
 
   showForEdit(bookmodel : BooksModel ){
-    this.bookservice.selectedbooking = Object.assign({}, bookmodel);
+    this.bookmodel= Object.assign({}, bookmodel);
   }
 
 

@@ -5,7 +5,7 @@ import {Router} from'@angular/router';
 import {ToastrService} from 'ngx-toastr';
 import {NgForm} from '@angular/forms';
 import {  FileUploader } from 'ng2-file-upload/ng2-file-upload';
-import { Http, Response } from '@angular/http';
+import { HttpClient } from '@angular//common/http';
 import "rxjs/add/operator/do";
 import { map,mergeMap} from 'rxjs/operators';
 const URL = 'http://localhost:3000/files';
@@ -28,14 +28,15 @@ export class AddAccommodationComponent implements OnInit {
   selectedFile: File = null;
   fd = new FormData();
   sd = new FormData();
+  accomodationArray : AccommodationModel[];
 
-  constructor(private accomodationservice : AccommodationServiceService,private toaster : ToastrService,private route : Router,private http: Http, private el: ElementRef) { }
+  constructor(private accomodationservice : AccommodationServiceService,private toaster : ToastrService,private route : Router,private http: HttpClient, private el: ElementRef) { }
 
 
   ngOnInit() {
-    this.accomodationservice.getAccommodation();
-    this.accomodationservice.getalltheAccommodation();
-    this.accomodationservice.getspecifiedAccommodation();
+
+    this.accomodationservice.getalltheAccommodation().subscribe((data:any) => { this.accomodationArray = data});
+    this.accomodationservice.getAccommodation().subscribe((data:any) => { this.accomodationArray = data});
     this.resetForm();
   }
  
@@ -43,7 +44,7 @@ export class AddAccommodationComponent implements OnInit {
 
     if(form != null)
     form.reset();
-    this.accomodationservice.selectedAccommodation ={
+    this.accomodationmodel ={
       AccommodationID : 0,
       UserID : +localStorage.getItem("CustomerID"),
       TypeOfAccommodation: '',
@@ -88,7 +89,7 @@ export class AddAccommodationComponent implements OnInit {
     }
     reader.readAsDataURL(this.fileToUpload);
     console.log(this.fileToUpload.name);
-    this.accomodationservice.selectedAccommodation.MainImage = this.fileToUpload.name;
+    this.accomodationmodel.MainImage = this.fileToUpload.name;
   }
 
   handleFileInputRoom(file: FileList) {
@@ -101,7 +102,7 @@ export class AddAccommodationComponent implements OnInit {
     }
     reader.readAsDataURL(this.fileToUpload);
     console.log(this.fileToUpload.name);
-    this.accomodationservice.selectedAccommodation.RoomImage = this.fileToUpload.name;
+    this.accomodationmodel.RoomImage = this.fileToUpload.name;
   }
 
   handleFileInputkitchen(file: FileList) {
@@ -114,7 +115,7 @@ export class AddAccommodationComponent implements OnInit {
     }
     reader.readAsDataURL(this.fileToUpload);
     console.log(this.fileToUpload.name);
-    this.accomodationservice.selectedAccommodation.KitchenImage = this.fileToUpload.name;
+    this.accomodationmodel.KitchenImage = this.fileToUpload.name;
   }
   handleFileInputbath(file: FileList) {
     this.fileToUpload = file.item(0);
@@ -126,7 +127,7 @@ export class AddAccommodationComponent implements OnInit {
     }
     reader.readAsDataURL(this.fileToUpload);
     console.log(this.fileToUpload.name);
-    this.accomodationservice.selectedAccommodation.BathroomImage = this.fileToUpload.name;
+    this.accomodationmodel.BathroomImage = this.fileToUpload.name;
   }
 
   onSubmit(form? : NgForm){
@@ -166,7 +167,7 @@ export class AddAccommodationComponent implements OnInit {
   }
 
   showForEdit(accomodationmodel : AccommodationModel){
-    this.accomodationservice.selectedAccommodation = Object.assign({}, accomodationmodel);
+    this.accomodationmodel = Object.assign({}, accomodationmodel);
   }
 
 

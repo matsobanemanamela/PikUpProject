@@ -1,26 +1,8 @@
-nav {
-    position: absolute;
-    /* top: 30px; */
-    z-index: 999;
-    /* Preserve aspet ratio */
-    min-width: 100%;
-    height: 90px;
-    top: 0;
-    left: 0;
-}
-
-.nav .navbar-nav a {
-    color: white !important;
-}
-
 .images {
-    height: 70px;
+    height: 65px;
     top: 0;
     left: 0;
-}
-
-span {
-    color: white;
+    object-fit: cover;
 }
 
 .my-carousel {
@@ -30,40 +12,32 @@ span {
 
 .carousel-item {
     width: 100%;
-    height: 400px;
+    height: 470px;
 }
 
 .carousel-item img {
-    height: 400px;
+    height: 470px;
     width: 100%;
 }
 
-body {
-    background: whitesmoke no-repeat center center fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    position: absolute;
-    top: 0;
-    left: 0;
-    /* Preserve aspet ratio */
-    min-width: 100%;
-    min-height: 100%;
-}
+
 
 .card {
     -webkit-box-shadow: 0 15px 20px rgba(0, 0, 0, 0.9);
     -moz-box-shadow: 0 15px 20px rgba(0, 0, 0, 0.9);
     box-shadow: 0 15px 20px rgba(0, 0, 0, 0.9);
+    display: flex;
+   justify-content: space-between;
+    
 }
 
 .Accommodation {
     background: white no-repeat center center;
-    background-position: center;
+    /* background: url("../../assets/18424307.jpg");*/
+    min-height: 100%;
     background-size: cover;
+    align-items: center;
+    
 }
 
 .borderless td,
@@ -82,17 +56,27 @@ h1 {
 }
 
 .service {
-    background: url("../../assets/rules-fo-rmaking-the-perfect-cake.jpg");
+    background: url("../../assets/Scones.jpg");
     min-height: 100%;
+    background-size: cover;
 }
 
 .tranportation {
     background: url("../../assets/tucson.jpg") no-repeat;
     min-height: 100%;
     background-size: cover;
+    object-fit: cover;
 }
 
 .service {
+    position: relative;
+    opacity: .75;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: fixed;
+    background-position: center;
+}
+.Accommodation {
     position: relative;
     opacity: .75;
     background-attachment: fixed;
@@ -128,11 +112,16 @@ h1 {
     background-size: fixed;
     background-position: center;
 }
+.sales{
+    min-height: 100%;
+    background-size: cover;
+}
 
 .book {
     background: url("../../assets/books.jpg");
     min-height: 100%;
     background-size: cover;
+    object-fit: cover;
 }
 
 .book {
@@ -149,7 +138,7 @@ h1 {
     bottom: 0;
     width: 100%;
     height: 150px;
-    background-color: #263238;
+    background-color:#00695c;
 }
 
 .demopadding {
@@ -208,15 +197,3 @@ h1 {
     filter: drop-shadow(0 1px 10px rgba(0, 0, 0, .8));
 }
 
-.icon.social.fb i {
-    left: 13px;
-    top: 10px;
-}
-
-.icon.social.tw i {
-    left: 11px;
-}
-
-.icon.social.in i {
-    left: 11px;
-}

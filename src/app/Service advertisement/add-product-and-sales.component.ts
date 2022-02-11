@@ -4,8 +4,7 @@ import {ServicesService} from '../pick-up-services/services.service';
 import {Router} from'@angular/router';
 import {ToastrService} from 'ngx-toastr';
 import {NgForm} from '@angular/forms';
-import {  FileUploader } from 'ng2-file-upload/ng2-file-upload';
-import { Http, Response } from '@angular/http';
+import {HttpClient} from '@angular/common/http';
 import "rxjs/add/operator/do";
 import { map,mergeMap} from 'rxjs/operators';
 const URL = 'http://localhost:3000/files';
@@ -17,13 +16,15 @@ const URL = 'http://localhost:3000/files';
 providers: [ServicesService]
 })
 export class AddProductAndSalesComponent implements OnInit {
+
 servicemodel : ServiceModel;
+
 imageUrl : string = "/assets/default_profile_image.png";
   fileToUpload : File = null;
 
   selectedFile: File = null;
   fd = new FormData();
-  constructor(private servicesservice : ServicesService,private toaster : ToastrService,private route : Router,private http: Http, private el: ElementRef) { }
+  constructor(private servicesservice : ServicesService,private toaster : ToastrService,private route : Router,private http: HttpClient, private el: ElementRef) { }
 
   ngOnInit() {
   
@@ -66,22 +67,6 @@ imageUrl : string = "/assets/default_profile_image.png";
     console.log(this.fileToUpload.name);
     this.servicesservice.selectedservice.ServiceImage = this.fileToUpload.name;
   }
-    // upload() {
-
-    //       // let inputEl: HTMLInputElement = this.el.nativeElement.querySelector('#photo-id');
-    //       // let fileCount: number = inputEl.files.length;
-    //       // let formData = new FormData();
-    //       // if (fileCount > 0) { // a file was selected
-            
-    //               // formData.append('photo', inputEl.files.item(0));
-             
-    //           this.http.post(URL, this.fd).pipe(map((res:Response) => res.json())).subscribe(
-    //                (success) => {
-                        
-    //               },
-    //               (error) => alert(error));
-    //         // }
-    //      }
 
     onSubmit(form? : NgForm){
   

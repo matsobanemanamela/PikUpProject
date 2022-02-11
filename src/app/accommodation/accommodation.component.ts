@@ -8,6 +8,7 @@ import {LikeAccommodationService} from '../pick-up-likes-service/like-accommodat
 import {Router} from'@angular/router';
 import {ToastrService} from 'ngx-toastr';
 import {NgForm} from '@angular/forms';
+import dateFormat from 'dateformat';
 
 @Component({
   selector: 'app-accommodation',
@@ -17,6 +18,7 @@ import {NgForm} from '@angular/forms';
 })
 export class AccommodationComponent implements OnInit {
   accomodationmodel : AccommodationModel;
+  accomodationArray : AccommodationModel[];
   likeaccommodationModel : LikeAccommodationModel;
   commentaccommodationmodel : CommentAccommodationModel;
   messageText:String;
@@ -34,20 +36,10 @@ export class AccommodationComponent implements OnInit {
   ngOnInit() {
 
    
-    this.accomodationservice.getALLTHEAccommodation();
-    this.accomodationservice.getalltheAccommodation();
-    this.accomodationservice.getspecifiedAccommodation();
-    this.commentaccommodationservice.getspecifiedCommentAccommodation();
-    this.commentaccommodationservice.getalltheCommentAccommodation(this.id);
-  //  this.accomodationservice.getspecifiedaccommodation.subscribe((classtype:Array<AccommodationModel>)=>{
-  //   this.specifiedflighttravellerdetail = classtype;
-  //   if(classtype.length > 0){
-  //    this.arr1Length = classtype.length;
-         
-  //  console.log(this.specifiedflighttravellerdetail.AccommodationID);
-    
-  //   }
-  // })
+    this.accomodationservice.getALLTHEAccommodationbylist().subscribe((data:any) => { this.accomodationArray = data});
+    this.accomodationservice.getalltheAccommodation().subscribe((data:any) => { this.accomodationArray = data});
+    this.accomodationservice.getAccommodation().subscribe((data:any) => { this.accomodationArray = data});
+
     this.resetForm();
 
   }
@@ -55,7 +47,7 @@ export class AccommodationComponent implements OnInit {
 
     if(form != null)
     form.reset();
-    this.accomodationservice.selectedAccommodation ={
+    this.accomodationmodel ={
       AccommodationID : 0,
       UserID : +localStorage.getItem("CustomerID"),
       TypeOfAccommodation: '',
@@ -78,16 +70,6 @@ export class AccommodationComponent implements OnInit {
 
     }
 
-    // if(form != null){
-    //   this.commentaccommodationmodel={
-    //     CommentID: 0, 
-    //     AccommodationID : this.accomodationservice.selectedAccommodation.AccommodationID,
-    //     UserID: +localStorage.getItem("CustomerID"),
-    //     DateandTime: '',
-    //     Comments: ''
-        
-    //   }
-    // }
   }
   onClick(event, accomodationmodel){
     console.log(accomodationmodel); // here your cart item object will be shown
@@ -98,21 +80,13 @@ export class AccommodationComponent implements OnInit {
   onClick2(event, accomodationmodel){
     console.log(accomodationmodel);
   }
-  showForEdit(accomodationmodel : AccommodationModel){
-    this.accomodationservice.selectedAccommodation = Object.assign({}, accomodationmodel);
-  }
-  getarrivalid(){
- for(let accomodationmodel of this.accomodationservice.everyaccommodationList){
+  
 
-  return accomodationmodel.AccommodationID
-  // console.log(accomodationmodel.AccommodationID)
-}  
 
-}
 
   onSubmit(){
 
-    let dateFormat = require('dateformat');
+    
     let now = new Date();
    var date =  dateFormat(now, "dddd, mmmm dS, yyyy, h:MM:ss TT");
    var com = document.getElementById("Comments") as HTMLInputElement;
@@ -135,8 +109,6 @@ export class AccommodationComponent implements OnInit {
   }
 
   onSubmitlikes(accomodationmodel : AccommodationModel){
-
-    let dateFormat = require('dateformat');
     let now = new Date();
    var date =  dateFormat(now, "dddd, mmmm dS, yyyy, h:MM:ss TT");
    var com = document.getElementById("Comments") as HTMLInputElement;

@@ -28,12 +28,12 @@ import { AddProductAndSalesComponent } from './Service advertisement/add-product
 import { AddSkillsAndTalentComponent } from './add-skills-and-talent/add-skills-and-talent.component';
 import { AddBooksAndStationeryComponent } from './add-books-and-stationery/add-books-and-stationery.component';
 import { AddSalesComponent } from './add-sales/add-sales.component';
-import { FileSelectDirective } from 'ng2-file-upload';
 import { MatButtonModule, MatCardModule, MatMenuModule, MatToolbarModule, MatIconModule, MatSidenavModule, MatListModule } from '@angular/material';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { FeedbackComponent } from './feedback/feedback.component';
 import { NotificationComponent } from './notification/notification.component';
 import { ChartsComponent } from './charts/charts.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 
 
@@ -57,11 +57,11 @@ import { ChartsComponent } from './charts/charts.component';
     AddSkillsAndTalentComponent,
     AddBooksAndStationeryComponent,
     AddSalesComponent,
-    FileSelectDirective,
     UserProfileComponent,
     FeedbackComponent,
     NotificationComponent,
     ChartsComponent,
+    NavbarComponent,
   
    
   ],

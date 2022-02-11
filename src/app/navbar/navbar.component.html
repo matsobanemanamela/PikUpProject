@@ -1,0 +1,49 @@
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: transparent;">
+  <a routerLink='/homepage' routerLinkActive='active'><img src="\assets\IMG-20180903-WA0001.jpg" class="images" alt=""></a>
+  <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarMenu">
+<span class="navbar-toggler-icon"></span>
+</button>
+  <div class="collapse navbar-collapse" id="navbarMenu">
+          <ul class="list-inline mx-auto justify-content-center">
+          <li class="list-inline-item">
+              <a routerLink='/product-and-service' routerLinkActive='active' class="nav-link"><span><i class="fa fa-home" aria-hidden="true"></i> Accomodation</span></a>
+          </li>
+          <li class="list-inline-item">
+              <a routerLink='/transportation' routerLinkActive='active' class="nav-link" ><span> <i class="fas fa-car"></i> Transportation </span></a>
+          </li>
+          <li class="list-inline-item">
+              <a routerLink='/sales' routerLinkActive='active' class="nav-link"><span><i class="fas fa-shopping-bag"></i> Sales & Product </span></a>
+          </li>
+          <li class="list-inline-item">
+              <a routerLink='/feedback' routerLinkActive='active' class="nav-link"><span> <i class="fas fa-comment"></i> FeedBack </span></a>
+          </li>
+          <li class="list-inline-item dropdown" >
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:white">
+                  <span> <i class="fas fa-user"></i> Profile</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="background-color: transparent;">
+                  <a class="dropdown-item" routerLink='/profile' routerLinkActive='active'><i class="fas fa-universal-access"></i> Profile</a>
+                  <a class="dropdown-item" routerLink='/add-accommodation' routerLinkAactive='active'><i class="fas fa-city"></i> Add Accommodation</a>
+                  <a class="dropdown-item" routerLink='/add-transport' routerLinkActive='active'><i class="fas fa-car"></i> Add Transportation</a>
+                  <a class="dropdown-item" routerLink='/add-product-and-sales' routerLinkActive='active'> <i class="fas fa-box-open"></i> Add services</a>
+                  <a class="dropdown-item" routerLink='/add-skills-and-talent' routerLinkActive='active'><i class="fas fa-microphone-alt"></i> Add Skills & Talent</a>
+                  <a class="dropdown-item" routerLink='/add-books-and-stationery' routerLinkActive='active'><i class="fas fa-book-open"></i> Add Books & stationery </a>
+                  <a class="dropdown-item" routerLink='/add-sales' routerLinkActive='active'><i class="fas fa-capsules"></i> Add things you want to sell </a>
+              </div>
+          </li>
+          <li class="list-inline-item">
+              <a routerLink='/notification' routerLinkActive='active' class="nav-link"><span><i class="far fa-bell"></i> Notification</span></a>
+          </li>
+          <li class="list-inline-item">
+              <a routerLink='/chart' routerLinkActive='active' class="nav-link"><span><i class="fas fa-comment-alt"></i> Message</span></a>
+          </li>
+          <li class="list-inline-item">
+              <a routerLink='/product-and-service' routerLinkActive='active' class="nav-link"><span><i class="fas fa-box-open"></i> Services</span></a>
+          </li>
+       
+      </ul>
+      <div class="navbar-option-item">
+          <button type="button" routerLink='/skills-and-talent' routerLinkActive='active' class="btn btn-outline-info" style="border-radius: 20px;"  (click)="Logout()"><span style="color: crimson;">Log-out <i class="fas fa-sign-out-alt"></i></span></button>
+      </div>
+  </div>
+</nav>

@@ -8,6 +8,7 @@ import {LikeProductService} from '../pick-up-likes-service/like-product.service'
 import {Router} from'@angular/router';
 import {ToastrService} from 'ngx-toastr';
 import {NgForm} from '@angular/forms';
+import dateFormat from 'dateformat';
 
 
 @Component({
@@ -60,7 +61,7 @@ localStorage.setItem('producid',accomodationmodel + '');
 }
 onSubmit(){
 
-  let dateFormat = require('dateformat');
+  
   let now = new Date();
  var date =  dateFormat(now, "dddd, mmmm dS, yyyy, h:MM:ss TT");
  var com = document.getElementById("Comments") as HTMLInputElement;
@@ -84,7 +85,7 @@ onSubmit(){
 
 onSubmitlikes(productmodel : ProductModel){
 
-  let dateFormat = require('dateformat');
+  
   let now = new Date();
  var date =  dateFormat(now, "dddd, mmmm dS, yyyy, h:MM:ss TT");
  var com = document.getElementById("Comments") as HTMLInputElement;

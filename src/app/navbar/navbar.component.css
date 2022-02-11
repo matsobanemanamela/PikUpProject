@@ -1,0 +1,63 @@
+nav {
+    position: fixed !important;
+    z-index: 999;
+    /* Preserve aspet ratio */
+    min-width: 100%;
+    height: 80px;
+}
+.navbar-option-item{
+    top: 0;
+    left: 0;
+}
+
+.nav .navbar-nav a {
+    color: white !important;
+    
+}
+
+.images {
+    height: 65px;
+    top: 0;
+    left: 0;
+    object-fit: cover;
+}
+
+span {
+    color: lightskyblue;
+    font-family: 'Raleway', italic;
+    font-weight: bold;
+}
+
+
+.icon.social.fb i {
+    left: 13px;
+    top: 10px;
+}
+
+.icon.social.tw i {
+    left: 11px;
+}
+
+.icon.social.in i {
+    left: 11px;
+}
+
+.dropdown-item{
+    color:lightskyblue;
+    font-family: 'Raleway', italic;
+    font-weight: bold;
+}
+.dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0;
+ }
+
+ .btn {
+    box-shadow: 0 20px 50px rgba(0, 0, 0, .2);
+    background-color: #00695c;
+    background-color: rgba(245, 245, 245, 0.4);
+}
+
+.btn:hover {
+    box-shadow: 0 30px 70px rgba(0, 0, 0, .4);
+}

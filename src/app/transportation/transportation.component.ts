@@ -8,6 +8,7 @@ import {LikeTransportService} from '../pick-up-likes-service/like-transport.serv
 import {Router} from'@angular/router';
 import {ToastrService} from 'ngx-toastr';
 import {NgForm} from '@angular/forms';
+import dateFormat from 'dateformat';
 
 
 @Component({
@@ -59,7 +60,6 @@ export class TransportationComponent implements OnInit {
 
   onSubmit(){
 
-    let dateFormat = require('dateformat');
     let now = new Date();
    var date =  dateFormat(now, "dddd, mmmm dS, yyyy, h:MM:ss TT");
    var com = document.getElementById("Comments") as HTMLInputElement;
@@ -83,7 +83,6 @@ export class TransportationComponent implements OnInit {
 
   onSubmitlikes(transportmodel : TransportModel){
 
-    let dateFormat = require('dateformat');
     let now = new Date();
    var date =  dateFormat(now, "dddd, mmmm dS, yyyy, h:MM:ss TT");
    var com = document.getElementById("Comments") as HTMLInputElement;

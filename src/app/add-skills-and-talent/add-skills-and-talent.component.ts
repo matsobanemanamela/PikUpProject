@@ -4,7 +4,7 @@ import {ToastrService} from 'ngx-toastr';
 import {NgForm} from '@angular/forms';
 import {TalentAndSkillsModel} from '../pick-up-models/talent-and-skills-model';
 import {SkillsAndTalentServiceService} from '../pick-up-services/skills-and-talent-service.service';
-import { Http, Response } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import "rxjs/add/operator/do";
 import { map,mergeMap} from 'rxjs/operators';
 const URL = 'http://localhost:3000/files';
@@ -23,7 +23,7 @@ vide : string;
   fileToUpload : File = null;
   selectedFile: File = null;
   fd = new FormData();
-  constructor(private skillsandtalentservice : SkillsAndTalentServiceService,private toaster : ToastrService,private route : Router,private http: Http) { }
+  constructor(private skillsandtalentservice : SkillsAndTalentServiceService,private toaster : ToastrService,private route : Router,private http: HttpClient) { }
 
   ngOnInit() {
     this.skillsandtalentservice.getspecifiedtalentandskill();

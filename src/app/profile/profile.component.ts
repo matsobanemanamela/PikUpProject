@@ -4,7 +4,7 @@ import {UserModel} from '../Shared/user-model';
 import {Router} from'@angular/router';
 import {ToastrService} from 'ngx-toastr';
 import {NgForm} from '@angular/forms';
-import { Http, Response } from '@angular/http';
+import {HttpClient } from '@angular/common/http';
 import "rxjs/add/operator/do";
 import { map,mergeMap} from 'rxjs/operators';
 const URL = 'http://localhost:3000/files';
@@ -26,14 +26,13 @@ fileToUpload : File = null;
 emailPattern =  /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 selectedFile: File = null;
 fd = new FormData();
-constructor(private userservice : UserServiceService, private route : Router, private toaster : ToastrService,private http: Http) { }
+constructor(private userservice : UserServiceService, private route : Router, private toaster : ToastrService,private http: HttpClient) { }
 
   ngOnInit() {
     this.resetForm();
     this.userservice.getUserClaims().subscribe((data: any)=>{
       this.usercliams = data;
       this.id = this.usercliams.UserID;
-    //  console.log(this.usercliams);
     })
 
     this.userservice.getuserbyID(this.id);
@@ -44,7 +43,6 @@ this.userservice.specifiedCustomer.subscribe((classtype:Array<UserModel>)=>{
  this.userArry = classtype;
  if(classtype.length > 0){
    this.arr1Length = classtype.length;
- // console.log(this.getimage())
  }
 })
   }
@@ -67,14 +65,6 @@ this.userservice.specifiedCustomer.subscribe((classtype:Array<UserModel>)=>{
     }
   }
 
-  // getimage(){
-  //   for(var x =0;x < this.arr1Length; x++){
-  
-  //     if(this.userArry[x].UserID == +localStorage.getItem("CustomerID")){
-  // return this.userArry[x].Image;
-  //     }
-  //   }
-  // }
 
   onChange(newValue) {
     const validEmailRegEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -100,18 +90,6 @@ reader.readAsDataURL(this.fileToUpload);
 this.user.Image = this.fileToUpload.name;
 }
 
-// public handleUpload(event)
-// {
-//     let imageFile = event.target.files[0]; //grab the image file
-    
-//     let fr = new FileReader(); // create a file reader (Note: It is like C#'s FileStream)
-//     fr.readAsDataURL(imageFile); //initialize the FileReader with a file to read
-//     fr.onload = () => // function to call when the fileReader loads a file
-//     {
-//         this.user.Image = fr.result.split(";base64,")[1] //get the base64 string representation of the file (without file type data)
-//        // console.log("Data: ", this.user.Image);
-//     } 
-// }
 
 onSubmit(form? : NgForm){
     // NODE JS SERVER 

@@ -4,7 +4,7 @@ import {TransportServiceService} from '../pick-up-services/transport-service.ser
 import {Router} from'@angular/router';
 import {ToastrService} from 'ngx-toastr';
 import {NgForm} from '@angular/forms';
-import { Http, Response } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import "rxjs/add/operator/do";
 import { map,mergeMap} from 'rxjs/operators';
 const URL = 'http://localhost:3000/files';
@@ -22,7 +22,7 @@ export class AddTransportComponent implements OnInit {
   today = new Date().toJSON().split('T')[0];
   selectedFile: File = null;
   fd = new FormData();
-  constructor(private transportservice : TransportServiceService,private toaster : ToastrService,private route : Router,private http: Http ) { }
+  constructor(private transportservice : TransportServiceService,private toaster : ToastrService,private route : Router,private http: HttpClient ) { }
 
   ngOnInit() {
     
