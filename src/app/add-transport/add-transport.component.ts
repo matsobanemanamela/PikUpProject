@@ -19,6 +19,7 @@ export class AddTransportComponent implements OnInit {
   Imageurl : string = "/assets/default_profile_image.png";
   fileToUpload : File = null;
   transportmodel: TransportModel;
+  transportmodelList: TransportModel[];
   today = new Date().toJSON().split('T')[0];
   selectedFile: File = null;
   fd = new FormData();
@@ -26,9 +27,8 @@ export class AddTransportComponent implements OnInit {
 
   ngOnInit() {
     
-   this.transportservice.getallthetransport();
-   this.transportservice.getspecifiedtransportss();
-   this.transportservice.gettransport();
+   this.transportservice.getallthetransport().subscribe((data:any) => { this.transportmodelList = data});
+   this.transportservice.gettransport().subscribe((data:any) => { this.transportmodelList = data});
  this.resetForm();
 
   }
@@ -38,7 +38,7 @@ export class AddTransportComponent implements OnInit {
     if(form != null)
     form.reset();
 
-    this.transportservice.selectedtransport={
+    this.transportmodel={
 
       TransportationID : 0,
       UserID: +localStorage.getItem("CustomerID"),
@@ -66,7 +66,7 @@ export class AddTransportComponent implements OnInit {
     }
   reader.readAsDataURL(this.fileToUpload);
   console.log(this.fileToUpload.name);
-  this.transportservice.selectedtransport.Image = this.fileToUpload.name;
+  this.transportmodel.Image = this.fileToUpload.name;
   }
 
 
@@ -105,8 +105,8 @@ export class AddTransportComponent implements OnInit {
       })
     }
   
-    showForEdit(transportmodel: TransportModel){
-      this.transportservice.selectedtransport = Object.assign({}, transportmodel);
+    showForEdit(transportmodels: TransportModel){
+      this.transportmodel = Object.assign({}, transportmodels);
     }
   
   

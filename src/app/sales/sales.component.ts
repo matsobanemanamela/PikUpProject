@@ -19,15 +19,16 @@ import dateFormat from 'dateformat';
 })
 export class SalesComponent implements OnInit {
   productmodel : ProductModel;
+  productlist : ProductModel[];
   commentproductmodel : CommentProductModel;
   likeproductmodel : LikeProductModel;
   constructor(private likeproductservice : LikeProductService,private commentproductservice : CommentProductService,private productservice : ProductServiceService,private toaster : ToastrService,private route : Router) { }
 
   ngOnInit() {
   
-    this.productservice.getspecifiedProducts();
-    this.productservice.getProducts();
-    this.productservice.getalltheProducts();
+    this.productservice.getprod().subscribe((data:any) => { this.productlist = data});
+    this.productservice.getProductsByUserID().subscribe((data:any) => { this.productlist = data});
+    this.productservice.getalltheProducts().subscribe((data:any) => { this.productlist = data});
     this.commentproductservice.getspecifiedCommentProduct();
     this.commentproductservice.getalltheCommentProduct();
 

@@ -18,16 +18,17 @@ const URL = 'http://localhost:3000/files';
 export class AddSkillsAndTalentComponent implements OnInit {
 
   talentandskillmodel : TalentAndSkillsModel;
+  talentandskillmodelList : TalentAndSkillsModel[];
   Imageurl : string = "/assets/default_profile_image.png";
-vide : string;
+  vide : string;
   fileToUpload : File = null;
   selectedFile: File = null;
   fd = new FormData();
   constructor(private skillsandtalentservice : SkillsAndTalentServiceService,private toaster : ToastrService,private route : Router,private http: HttpClient) { }
 
   ngOnInit() {
-    this.skillsandtalentservice.getspecifiedtalentandskill();
-    this.skillsandtalentservice.gettalentandskill();
+    this.skillsandtalentservice.gettalentandskill().subscribe((data:any) => { this.talentandskillmodelList = data});
+    this.skillsandtalentservice.getallthetalentandskill().subscribe((data:any) => { this.talentandskillmodelList = data});
     this.resetForm();
   }
 
@@ -36,7 +37,7 @@ vide : string;
     if(form != null)
     form.reset();
 
-    this.skillsandtalentservice.selectedtalentandskillmodel={
+    this.talentandskillmodel={
 
     skillandtalentID : 0,
     UserID : +localStorage.getItem("CustomerID"),
@@ -63,7 +64,7 @@ vide : string;
     }
   reader.readAsDataURL(this.fileToUpload);
 
-  this.skillsandtalentservice.selectedtalentandskillmodel.Image = this.fileToUpload.name;
+  this.talentandskillmodel.Image = this.fileToUpload.name;
   }
   
    handleFileInputVideo(file : FileList){
@@ -75,7 +76,7 @@ vide : string;
     }
   reader.readAsDataURL(this.fileToUpload);
   console.log(this.fileToUpload.name)
-  this.skillsandtalentservice.selectedtalentandskillmodel.Video = this.fileToUpload.name;
+  this.talentandskillmodel.Video = this.fileToUpload.name;
   }
  
   handleFileInputMP3(file : FileList){
@@ -87,7 +88,7 @@ vide : string;
     }
   reader.readAsDataURL(this.fileToUpload);
   console.log(this.fileToUpload.name)
-  this.skillsandtalentservice.selectedtalentandskillmodel.Song = this.fileToUpload.name;
+  this.talentandskillmodel.Song = this.fileToUpload.name;
   }
 
   
@@ -128,8 +129,8 @@ vide : string;
           })
         }
       
-        showForEdit(talentandskillmodel : TalentAndSkillsModel){
-          this.skillsandtalentservice.selectedtalentandskillmodel = Object.assign({}, talentandskillmodel);
+        showForEdit(talentandskillmodels : TalentAndSkillsModel){
+          this.talentandskillmodel = Object.assign({}, talentandskillmodels);
         }
       
       

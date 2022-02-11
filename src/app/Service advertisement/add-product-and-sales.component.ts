@@ -18,7 +18,7 @@ providers: [ServicesService]
 export class AddProductAndSalesComponent implements OnInit {
 
 servicemodel : ServiceModel;
-
+servicelist : ServiceModel[];
 imageUrl : string = "/assets/default_profile_image.png";
   fileToUpload : File = null;
 
@@ -28,9 +28,8 @@ imageUrl : string = "/assets/default_profile_image.png";
 
   ngOnInit() {
   
-    this.servicesservice.getallService();
-    this.servicesservice.getService();
-    this.servicesservice.getspecifiedService();
+    this.servicesservice.getallService().subscribe((data:any) => { this.servicelist = data});
+    this.servicesservice.getService().subscribe((data:any) => { this.servicelist = data});
     this.resetForm();
   
   }
@@ -40,7 +39,7 @@ imageUrl : string = "/assets/default_profile_image.png";
     if(form != null)
     form.reset();
 
-    this.servicesservice.selectedservice={
+    this.servicemodel={
 
       ServiceID: 0,
       UserID :  +localStorage.getItem("CustomerID"),
@@ -65,7 +64,7 @@ imageUrl : string = "/assets/default_profile_image.png";
     }
     reader.readAsDataURL(this.fileToUpload);
     console.log(this.fileToUpload.name);
-    this.servicesservice.selectedservice.ServiceImage = this.fileToUpload.name;
+    this.servicemodel.ServiceImage = this.fileToUpload.name;
   }
 
     onSubmit(form? : NgForm){
@@ -105,7 +104,7 @@ imageUrl : string = "/assets/default_profile_image.png";
     }
   
     showForEdit(servicemodel : ServiceModel){
-      this.servicesservice.selectedservice = Object.assign({}, servicemodel);
+      this.servicemodel = Object.assign({}, servicemodel);
     }
   
   

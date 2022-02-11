@@ -13,7 +13,7 @@ export class ServicesService {
   readonly rootUrl = "http://localhost:52539/";
 
   servicemodel : ServiceModel;
-  servicelist : ServiceModel[];
+  
 
   constructor(private httpClient : HttpClient) { }
 

@@ -38,7 +38,7 @@ export class AccommodationServiceService {
       }
 
 
- //update Accommodation information method
+      //update Accommodation information method
 
     UpdateAccommodation(id,accomodationmodel){
         var body = JSON.stringify(accomodationmodel);
@@ -46,7 +46,7 @@ export class AccommodationServiceService {
         return this.httpClient.put(this.rootUrl +'api/Accommodations/'+id,body, {headers : headersOption});
       }
 
-    //delete Accommodations information
+      //delete Accommodations information
       DeleteAccommodation(id : number)
       {
         return this.httpClient.delete(this.rootUrl+'api/Accommodations/'+id);

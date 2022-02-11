@@ -19,6 +19,7 @@ import dateFormat from 'dateformat';
 export class ProductAndServiceComponent implements OnInit {
 
   likeservicemodel : LikeServiceModel;
+  servicelist : ServiceModel[];
   commentservicemodel : CommentServiceModel;
   servicemodel : ServiceModel;
 
@@ -26,7 +27,7 @@ export class ProductAndServiceComponent implements OnInit {
   constructor(private servicesservice : ServicesService,private toaster : ToastrService,private route : Router, private commentservice : CommentServiceService,private likeservice : LikeServiceService ) { }
 
   ngOnInit() {
-this.servicesservice.getallService();
+   this.servicesservice.getallService().subscribe((data:any) => { this.servicelist = data});
 
     this.resetForm();
   }

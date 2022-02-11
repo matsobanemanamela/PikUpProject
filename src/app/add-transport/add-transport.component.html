@@ -12,45 +12,45 @@
             <br>
             <form #Transportationinfo="ngForm" enctype="multipart/form-data">
 
-                <input type="hidden" name="TransportationID" #TransportationID="ngModel" [(ngModel)]="transportservice.selectedtransport.TransportationID">
-                <input type="hidden" name="UserID" #UserID="ngModel" [(ngModel)]="transportservice.selectedtransport.UserID">
+                <input type="hidden" name="TransportationID" #TransportationID="ngModel" [(ngModel)]="transportmodel.TransportationID">
+                <input type="hidden" name="UserID" #UserID="ngModel" [(ngModel)]="transportmodel.UserID">
                 <div class="card">
                     <div class="card-body">
                         <div class="form-group">
-                            <img src="http://localhost:8080/{{transportservice.selectedtransport.Image}}" [src]="Imageurl" alt=" " class="rounded-circle" style="width:100px; height: 100px;">
+                            <img src="http://localhost:8080/{{transportmodel.Image}}" [src]="Imageurl" alt=" " class="rounded-circle" style="width:100px; height: 100px;">
                             <br>
                             <label>Choose Product Image</label>
-                            <input type="file" #Image accept="image/*" name="Image" #Image="ngModel" [(ngModel)]="transportservice.selectedtransport.Image" class="form-control-file" id="photo-id" (change)="createFormData($event)" (change)="handleFileInput($event.target.files)" required>
+                            <input type="file" #Image accept="image/*" name="Image" #Image="ngModel" [(ngModel)]="transportmodel.Image" class="form-control-file" id="photo-id" (change)="createFormData($event)" (change)="handleFileInput($event.target.files)" required>
                         </div>
                         <br>
 
                         <div class="form-group">
                             <div class="form-group">
                                 <label>Enter Your Departing place</label>
-                                <input type="text" name="DepartureDestination" #DepartureDestination="ngModel" [(ngModel)]="transportservice.selectedtransport.DepartureDestination" class="form-control" placeholder="Enter Your Departing place" required min="3" maxlength="80">
+                                <input type="text" name="DepartureDestination" #DepartureDestination="ngModel" [(ngModel)]="transportmodel.DepartureDestination" class="form-control" placeholder="Enter Your Departing place" required min="3" maxlength="80">
 
                             </div>
 
                             <div class="form-group">
                                 <label>Enter Your Arrival Place</label>
-                                <input type="text" name="ArrivalDestination" #ArrivalDestination="ngModel" [(ngModel)]="transportservice.selectedtransport.ArrivalDestination" class="form-control" placeholder="Enter Your Arrival" required min="3" maxlength="30">
+                                <input type="text" name="ArrivalDestination" #ArrivalDestination="ngModel" [(ngModel)]="transportmodel.ArrivalDestination" class="form-control" placeholder="Enter Your Arrival" required min="3" maxlength="30">
                             </div>
                             <div class="form-group">
                                 <label>Choose Your Departing Date</label>
-                                <input type="date" name="DepartureDate" min="{{today}}" #DepartureDate="ngModel" [(ngModel)]="transportservice.selectedtransport.DepartureDate" class="form-control">
+                                <input type="date" name="DepartureDate" min="{{today}}" #DepartureDate="ngModel" [(ngModel)]="transportmodel.DepartureDate" class="form-control">
                             </div>
                             <div class="form-group">
                                 <label>Enter number of passengers required</label>
-                                <input type="number" name="NumberOfPassengers" #NumberOfPassengers="ngModel" [(ngModel)]="transportservice.selectedtransport.NumberOfPassengers" class="form-control" placeholder="Enter number of passengers required" required min="1" maxlength="40">
+                                <input type="number" name="NumberOfPassengers" #NumberOfPassengers="ngModel" [(ngModel)]="transportmodel.NumberOfPassengers" class="form-control" placeholder="Enter number of passengers required" required min="1" maxlength="40">
                             </div>
 
                             <div class="form-group">
                                 <label>Enter the destination price</label>
-                                <input type="number" name="Price" #Price="ngModel" [(ngModel)]="transportservice.selectedtransport.Price" class="form-control" placeholder="Enter the destination price" required min="1">
+                                <input type="number" name="Price" #Price="ngModel" [(ngModel)]="transportmodel.Price" class="form-control" placeholder="Enter the destination price" required min="1">
                             </div>
                             <div class="form-group">
                                 <label>Add any Description about your Transportation</label>
-                                <textarea type="text" name="Comment" #Comment="ngModel" [(ngModel)]="transportservice.selectedtransport.Comment" class="form-control" placeholder="Write Message"></textarea>
+                                <textarea type="text" name="Comment" #Comment="ngModel" [(ngModel)]="transportmodel.Comment" class="form-control" placeholder="Write Message"></textarea>
                             </div>
                         </div>
 
@@ -83,7 +83,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let transportmodel of transportservice.transportlist">
+                <tr *ngFor="let transportmodel of transportmodelList">
                     <td>{{transportmodel.TransportationID}}</td>
                     <td>{{transportmodel.DepartureDestination}}</td>
                     <td>{{transportmodel.ArrivalDestination}}</td>

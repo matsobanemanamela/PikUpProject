@@ -20,15 +20,14 @@ import dateFormat from 'dateformat';
 export class TransportationComponent implements OnInit {
 
   transportmodel: TransportModel;
+  transportmodelList: TransportModel[];
   liketransportmodel : LikeTransportModel;
   commenttransportmodel : CommentTransportModel;
 
   constructor(private commenttransportservice : CommentTransportService, private liketransportservice : LikeTransportService ,private transportservice : TransportServiceService,private toaster : ToastrService,private route : Router) { }
 
   ngOnInit() {
-    this.transportservice.getallthetransport();
-    this.transportservice.getspecifiedtransportss();
-    this.commenttransportservice.getalltheCommentTransport();
+    this.transportservice.getallthetransport().subscribe((data:any) => { this.transportmodelList = data});
     // this.transportservice.gettransport();
   }
 

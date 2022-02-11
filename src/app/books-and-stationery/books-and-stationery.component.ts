@@ -27,8 +27,8 @@ export class BooksAndStationeryComponent implements OnInit {
   constructor(private likebookservice : LikeBooksService,private commentbookservice : CommentBooksService,private bookservice : BooksService, private toaster : ToastrService,private route : Router) { }
 
   ngOnInit() {
-    this.bookservice.getallthebooks();
-    this.bookservice.getbook().subscribe((data:any) => { this.bookmodelArray = data});;
+    this.bookservice.getallthebooks().subscribe((data:any) => { this.bookmodelArray = data});
+    this.bookservice.getbook().subscribe((data:any) => { this.bookmodelArray = data});
 // this.commentbookservice.getalltheCommentBooks();
 // this.commentbookservice.getCommentBooks();
     this.resetForm();
