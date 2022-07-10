@@ -17,14 +17,14 @@
                             <img src="http://localhost:8080/{{talentandskillmodel.Image}}" [src]="Imageurl" alt=" " class="rounded-circle" style="width:100px; height: 100px;">
                             <br>
                             <label>Choose Your Image</label>
-                            <input type="file" #Image accept="image/*" name="Image" #Image="ngModel" [(ngModel)]="talentandskillmodel.Image" class="form-control-file" id="photo-id" (change)="createFormData($event)" (change)="handleFileInput($event.target.files)">
+                            <input type="file"  accept="image/*" name="Image" #Image="ngModel" [(ngModel)]="talentandskillmodel.Image" class="form-control-file" id="photo-id" (change)="createFormData($event)" (change)="handleFileInput($event.target.files)">
                         </div>
                         <br>
                         <br>
                         <br>
                         <div class="custom-file">
                             <label>Upload Your Video</label>
-                            <input type="file" #Video accept="video/*" name="Video" #Video="ngModel" [(ngModel)]="talentandskillmodel.Video" class="form-control-file" id="Video" (change)="createFormData($event)" (change)="handleFileInputVideo($event.target.files)">
+                            <input type="file"  accept="video/*" name="Video" #Video="ngModel" [(ngModel)]="talentandskillmodel.Video" class="form-control-file" id="Video" (change)="createFormData($event)" (change)="handleFileInputVideo($event.target.files)">
                         </div>
                         <br>
                         <br>
@@ -32,7 +32,7 @@
                         <div class="custom-file">
 
                             <label>Upload Your Song</label>
-                            <input type="file" #Song accept="audio/*" name="Song" #Song="ngModel" [(ngModel)]="talentandskillmodel.Song" class="form-control-file" id="song-Id" (change)="createFormData($event)" (change)="handleFileInputMP3($event.target.files)">
+                            <input type="file" accept="audio/*" name="Song" #Song="ngModel" [(ngModel)]="talentandskillmodel.Song" class="form-control-file" id="song-Id" (change)="createFormData($event)" (change)="handleFileInputMP3($event.target.files)">
                         </div>
                         <br>
                         <br>

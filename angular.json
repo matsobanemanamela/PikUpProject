@@ -37,7 +37,6 @@
                             "optimization": true,
                             "outputHashing": "all",
                             "sourceMap": false,
-                            "extractCss": true,
                             "namedChunks": false,
                             "aot": true,
                             "extractLicenses": true,
@@ -122,5 +121,13 @@
             }
         }
     },
-    "defaultProject": "PIK-UP"
+    "defaultProject": "PIK-UP",
+    "cli": {
+      "cache": {
+      "enabled": false,
+      "path": ".cache",
+      "environment": "all"
+    },
+      "analytics": "2b521ff4-10cc-4785-94d3-46f732d3caef"
+    }
 }

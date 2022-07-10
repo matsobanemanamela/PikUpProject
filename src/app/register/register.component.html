@@ -9,7 +9,7 @@
 
                         <label for="exampleFormControlFile1">Choose Image</label>
                         <img [src]="Imageurl" alt="" class="rounded-circle" style="width:100px; height: 100px;">
-                        <input type="file" #Image accept="image/*" name="Image" #Image="ngModel" [(ngModel)]="user.Image" class="form-control-file" id="photo-id" (change)="createFormData($event)" (change)="handleFileInput($event.target.files)">
+                        <input type="file"  accept="image/*" name="Image" #Image="ngModel" [(ngModel)]="user.Image" class="form-control-file" id="photo-id" (change)="createFormData($event)" (change)="handleFileInput($event.target.files)">
                     </div>
 
                     <div class="form-row">

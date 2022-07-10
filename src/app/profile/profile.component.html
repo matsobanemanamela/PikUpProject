@@ -20,7 +20,7 @@
                                 <img src="http://localhost:8080/{{usercliams.Image}}" [src]="Imageurl" alt="" class="rounded-circle" style="width:150px; height: 150px; display: block;
                                 margin-left: auto;
                                 margin-right: auto;">
-                                <input type="file" #Image accept="image/*" name="Image" #Image="ngModel" [(ngModel)]="usercliams.Image" class="form-control-file" id="photo-id" (change)="createFormData($event)" (change)="handleFileInput($event.target.files)">
+                                <input type="file"  accept="image/*" name="Image" #Image="ngModel" [(ngModel)]="usercliams.Image" class="form-control-file" id="photo-id" (change)="createFormData($event)" (change)="handleFileInput($event.target.files)">
                             </div>
                         </div>
                     </div>

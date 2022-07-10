@@ -20,7 +20,7 @@
                             <img src="http://localhost:8080/{{transportmodel.Image}}" [src]="Imageurl" alt=" " class="rounded-circle" style="width:100px; height: 100px;">
                             <br>
                             <label>Choose Product Image</label>
-                            <input type="file" #Image accept="image/*" name="Image" #Image="ngModel" [(ngModel)]="transportmodel.Image" class="form-control-file" id="photo-id" (change)="createFormData($event)" (change)="handleFileInput($event.target.files)" required>
+                            <input type="file" accept="image/*" name="Image" #Image="ngModel" [(ngModel)]="transportmodel.Image" class="form-control-file" id="photo-id" (change)="createFormData($event)" (change)="handleFileInput($event.target.files)" required>
                         </div>
                         <br>
 

@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import {CommentBooksModel} from '../pick-up-comment-models/comment-books-model';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import{Http,Response, Headers,RequestOptions, RequestMethod} from '@angular/http';
 import { Observable, Subject, ReplaySubject, from, of, range, BehaviorSubject} from 'rxjs';
-import { map,mergeMap} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -11,61 +9,39 @@ import { map,mergeMap} from 'rxjs/operators';
 export class CommentBooksService {
   readonly rootUrl = "http://localhost:52539/";
 
-  getspecifiedCommentBooksModel : Subject<Array<CommentBooksModel>> = new BehaviorSubject<Array<CommentBooksModel>>([]);
-  selectedCommentBooksModel : CommentBooksModel; 
-  commentBooksModel : CommentBooksModel;
-  commentCommentBooksModellist : CommentBooksModel[];
-  allCommentBooksModellist : CommentBooksModel[];
 
-  constructor(private http : Http, private httpClient : HttpClient) { }
+  commentBooksModel : CommentBooksModel;
+;
+
+  constructor( private httpClient : HttpClient) { }
 
   PostCommentBooks(commentBooksModel : CommentBooksModel){
     var body = JSON.stringify(commentBooksModel);
-    var headersOption = new Headers({'Content-Type':'application/json'});
-    var requestOptions = new RequestOptions({method : RequestMethod.Post,headers : headersOption});
-     return this.http.post(this.rootUrl + 'api/CommentBooks', body, requestOptions);
+    var headersOption = new HttpHeaders({'Content-Type':'application/json'});
+     return this.httpClient.post(this.rootUrl + 'api/CommentBooks', body, {headers : headersOption});
     }
 
-    getallCommentBooks()
+    getallCommentBooks() : Observable<CommentBooksModel[]>
     {
-      return this.httpClient.get(this.rootUrl+'api/Accommodations').pipe(map((data:Response)=> data.json()));
+      return this.httpClient.get<CommentBooksModel[]>(this.rootUrl+'api/Accommodations');
     }
-////////////////get all the CommentBooksModel list method///////////////////////////////
-      getalltheCommentBooks(){
-        return this.http.get(this.rootUrl+'api/CommentBooks').pipe(map((data : Response)=>{
-          return data.json() as CommentBooksModel[];
-        })).toPromise().then(x => {
-          this.allCommentBooksModellist = x;
-        })
-      }
-     // get CommentBooksModel information
-      getCommentBooks(){
-        return this.http.get(this.rootUrl+'api/GetCommentBooks?id='+localStorage.getItem("commenbooki")).pipe(map((data : Response)=>{
-          return data.json() as CommentBooksModel[];
-        })).toPromise().then(x => {
-          this.commentCommentBooksModellist = x;
-        })
-      }
-    
-      getspecifiedCommentBooks(){
-        return this.http.get(this.rootUrl+'api/CommentBooks').pipe(map((data : Response)=>{
-          return data.json()
-        })).subscribe((data : any)=>{
-          this.getspecifiedCommentBooksModel.next(data);
-        })
+
+
+      getCommentBooks(): Observable<CommentBooksModel[]>
+      {
+        return this.httpClient.get<CommentBooksModel[]>(this.rootUrl+'api/GetCommentBooks?id='+localStorage.getItem("commenbooki"));
       }
 
       //update CommentBooksModel
 
     UpdateCommentBooks(id,commentBooksModel){
         var body = JSON.stringify(commentBooksModel);
-        var headerOptions = new Headers({'Content-Type': 'application/json'});
-        var requestOptions = new RequestOptions({method: RequestMethod.Put,headers: headerOptions});
-        return this.http.put(this.rootUrl +'api/CommentBooks/'+id,body,requestOptions).pipe(map(res =>res.json()));
+        var headersOption = new HttpHeaders({'Content-Type':'application/json'});
+        return this.httpClient.put(this.rootUrl +'api/CommentBooks/'+id,body,{headers : headersOption});
       }
 
       DeleteCommentBooks(id : number)
       {
-        return this.http.delete(this.rootUrl + 'api/CommentBooks/'+id).pipe(map((res => res.json())));
+        return this.httpClient.delete(this.rootUrl + 'api/CommentBooks/'+id);
       }
 }

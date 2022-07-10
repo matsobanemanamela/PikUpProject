@@ -3,9 +3,7 @@ import { Component } from '@angular/core';
 import { NgModule } from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
-import {HttpModule} from '@angular/http';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
-import { Ng2DropdownModule } from 'ng2-material-dropdown';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {appRoutes} from './router';
 import {ToastrModule} from 'ngx-toastr';
@@ -28,7 +26,13 @@ import { AddProductAndSalesComponent } from './Service advertisement/add-product
 import { AddSkillsAndTalentComponent } from './add-skills-and-talent/add-skills-and-talent.component';
 import { AddBooksAndStationeryComponent } from './add-books-and-stationery/add-books-and-stationery.component';
 import { AddSalesComponent } from './add-sales/add-sales.component';
-import { MatButtonModule, MatCardModule, MatMenuModule, MatToolbarModule, MatIconModule, MatSidenavModule, MatListModule } from '@angular/material';
+import {MatButtonModule} from'@angular/material/button'
+import {MatCardModule } from '@angular/material/card'
+import {MatMenuModule} from '@angular/material/menu';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatIconModule} from '@angular/material/icon';
+import {MatSidenavModule} from '@angular/material/sidenav'
+import {MatListModule } from '@angular/material/list';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { FeedbackComponent } from './feedback/feedback.component';
 import { NotificationComponent } from './notification/notification.component';
@@ -62,18 +66,18 @@ import { NavbarComponent } from './navbar/navbar.component';
     NotificationComponent,
     ChartsComponent,
     NavbarComponent,
-  
-   
+
+
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    HttpModule,
     ToastrModule.forRoot(),
     RouterModule.forRoot(appRoutes),
-    BrowserAnimationsModule,
-    Ng2DropdownModule,
+    BrowserAnimationsModule
+  ],
+  exports: [
     MatButtonModule,
     MatMenuModule,
     MatCardModule,
@@ -81,7 +85,6 @@ import { NavbarComponent } from './navbar/navbar.component';
     MatIconModule,
     MatSidenavModule,
     MatListModule
-    
   ],
   providers: [UserServiceService, AuthGuard],
   bootstrap: [AppComponent]

@@ -25,12 +25,11 @@ export class SalesComponent implements OnInit {
   constructor(private likeproductservice : LikeProductService,private commentproductservice : CommentProductService,private productservice : ProductServiceService,private toaster : ToastrService,private route : Router) { }
 
   ngOnInit() {
-  
+
     this.productservice.getprod().subscribe((data:any) => { this.productlist = data});
     this.productservice.getProductsByUserID().subscribe((data:any) => { this.productlist = data});
     this.productservice.getalltheProducts().subscribe((data:any) => { this.productlist = data});
-    this.commentproductservice.getspecifiedCommentProduct();
-    this.commentproductservice.getalltheCommentProduct();
+
 
     this.resetForm();
   }
@@ -52,7 +51,7 @@ this.productmodel={
   ProductPrice : 0,
   Comment : ''
 
-} 
+}
 }
 
 onClick(event, accomodationmodel){
@@ -62,37 +61,37 @@ localStorage.setItem('producid',accomodationmodel + '');
 }
 onSubmit(){
 
-  
+
   let now = new Date();
  var date =  dateFormat(now, "dddd, mmmm dS, yyyy, h:MM:ss TT");
  var com = document.getElementById("Comments") as HTMLInputElement;
-  // NODE JS SERVER 
+  // NODE JS SERVER
   this.commentproductmodel={
-    CommentID: 0, 
+    CommentID: 0,
     ProductID : +localStorage.getItem("producid"),
     UserID: +localStorage.getItem("CustomerID"),
     DateandTime: date,
     Comments: com.value
-    
+
   }
   this.commentproductservice.PostCommentProduct(this.commentproductmodel)
   .subscribe((data:any) => {
       if (data.Succeeded == true)
-     
+
       this.toaster.success('your have commented successfully');
       location.reload();
-     }); 
+     });
 }
 
 onSubmitlikes(productmodel : ProductModel){
 
-  
+
   let now = new Date();
  var date =  dateFormat(now, "dddd, mmmm dS, yyyy, h:MM:ss TT");
  var com = document.getElementById("Comments") as HTMLInputElement;
-  // NODE JS SERVER 
+  // NODE JS SERVER
   this.likeproductmodel={
-    likeId: 0, 
+    likeId: 0,
     ProductID : productmodel.ProductID,
     UserID: +localStorage.getItem("CustomerID"),
     DateTime: date,
@@ -103,7 +102,7 @@ onSubmitlikes(productmodel : ProductModel){
       if (data.Succeeded == true)
       // this.toaster.success('your have  successfully');
       location.reload();
-     }); 
+     });
 }
 // sendMessage()
 // {
@@ -119,11 +118,11 @@ geteToday(){
 
   if(dd<10){
       dd= +('0'+dd);
-  } 
+  }
   if(mm<10){
       mm = +('0'+mm);
-  } 
+  }
   return dd+'/'+mm+'/'+yyyy;
-  
+
 }
 }

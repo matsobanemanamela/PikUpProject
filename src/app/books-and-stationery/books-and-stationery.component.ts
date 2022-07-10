@@ -29,8 +29,7 @@ export class BooksAndStationeryComponent implements OnInit {
   ngOnInit() {
     this.bookservice.getallthebooks().subscribe((data:any) => { this.bookmodelArray = data});
     this.bookservice.getbook().subscribe((data:any) => { this.bookmodelArray = data});
-// this.commentbookservice.getalltheCommentBooks();
-// this.commentbookservice.getCommentBooks();
+
     this.resetForm();
 
   }
@@ -49,7 +48,7 @@ export class BooksAndStationeryComponent implements OnInit {
       neworused: '',
       Image : '',
       Price : 0,
-      Comment : '' 
+      Comment : ''
     }
 
   }
@@ -66,22 +65,22 @@ export class BooksAndStationeryComponent implements OnInit {
     let now = new Date();
    var date =  dateFormat(now, "dddd, mmmm dS, yyyy, h:MM:ss TT");
    var com = document.getElementById("Comments") as HTMLInputElement;
-    // NODE JS SERVER 
+    // NODE JS SERVER
     this.commentBooksmodel={
-      CommentID: 0, 
+      CommentID: 0,
       BookID : +localStorage.getItem("commenbooki"),
       UserID: +localStorage.getItem("CustomerID"),
       DateandTime: date,
       Comments: com.value
-      
+
     }
     this.commentbookservice.PostCommentBooks(this.commentBooksmodel)
     .subscribe((data:any) => {
         if (data.Succeeded == true)
-       
+
         this.toaster.success('your have commented successfully');
         location.reload();
-       }); 
+       });
   }
 
   onSubmitlikes(bookmodel : LikeBooksModel){
@@ -90,9 +89,9 @@ export class BooksAndStationeryComponent implements OnInit {
     let now = new Date();
    var date =  dateFormat(now, "dddd, mmmm dS, yyyy, h:MM:ss TT");
    var com = document.getElementById("Comments") as HTMLInputElement;
-    // NODE JS SERVER 
+    // NODE JS SERVER
     this.likebooksmodel={
-      likeId: 0, 
+      likeId: 0,
       BookID : bookmodel.BookID,
       UserID: +localStorage.getItem("CustomerID"),
       DateTime: date,
@@ -103,7 +102,7 @@ export class BooksAndStationeryComponent implements OnInit {
         if (data.Succeeded == true)
         // this.toaster.success('your have  successfully');
         location.reload();
-       }); 
+       });
   }
 
   // sendMessage()
@@ -120,11 +119,11 @@ export class BooksAndStationeryComponent implements OnInit {
 
     if(dd<10){
         dd= +('0'+dd);
-    } 
+    }
     if(mm<10){
         mm = +('0'+mm);
-    } 
+    }
     return dd+'/'+mm+'/'+yyyy;
-    
+
   }
 }

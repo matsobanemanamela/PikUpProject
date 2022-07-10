@@ -18,7 +18,7 @@
                             <img src="http://localhost:8080/{{servicemodel.ServiceImage}}" [src]="imageUrl" alt=" " class="rounded-circle" style="width:100px; height: 100px;">
                             <br>
                             <label>Choose Service Image</label>
-                            <input type="file" #ServiceImage accept="image/*" name="ServiceImage" #ServiceImage="ngModel" [(ngModel)]="servicemodel.ServiceImage" class="form-control-file" id="photo-id" (change)="createFormData($event)" (change)="handleFileInput($event.target.files)"
+                            <input type="file"  accept="image/*" name="ServiceImage" #ServiceImage="ngModel" [(ngModel)]="servicemodel.ServiceImage" class="form-control-file" id="photo-id" (change)="createFormData($event)" (change)="handleFileInput($event.target.files)"
                                 required>
                         </div>
                         <br>

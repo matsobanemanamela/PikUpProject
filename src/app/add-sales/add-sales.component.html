@@ -18,7 +18,7 @@
                             <img src="http://localhost:8080/{{productmodel.ProductImage}}" [src]="Imageurl" alt=" " class="rounded-circle" style="width:100px; height: 100px;">
                             <br>
                             <label>Choose Product Image</label>
-                            <input type="file" #ProductImage accept="image/*" name="ProductImage" #ProductImage="ngModel" [(ngModel)]="productmodel.ProductImage" class="form-control-file" id="photo-id" (change)="createFormData($event)" (change)="handleFileInput($event.target.files)"
+                            <input type="file" accept="image/*" name="ProductImage" #ProductImage="ngModel" [(ngModel)]="productmodel.ProductImage" class="form-control-file" id="photo-id" (change)="createFormData($event)" (change)="handleFileInput($event.target.files)"
                                 required>
                         </div>
                         <br>
