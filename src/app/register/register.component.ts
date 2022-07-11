@@ -5,7 +5,6 @@ import {Router} from'@angular/router';
 import {ToastrService} from 'ngx-toastr';
 import {NgForm} from '@angular/forms';
 import {HttpClient, HttpHeaders, HttpRequest,HttpResponse,HttpHeaderResponse} from '@angular/common/http';
-import "rxjs/add/operator/do";
 import { map,mergeMap} from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http';
 const URL = 'http://localhost:3000/files';
@@ -23,7 +22,7 @@ Imageurl : string = "/assets/default_profile_image.png";
 fileToUpload : File = null;
 emailPattern =  /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 selectedFile: File = null;
-fd = new FormData(); 
+fd = new FormData();
 userArry : Array<UserModel> = [];
 arr1Length: number;
 isLoginError : boolean = false;
@@ -31,9 +30,9 @@ isLoginError : boolean = false;
 constructor(private userservice : UserServiceService, private route : Router, private toaster : ToastrService,private http: HttpClient) { }
 
   ngOnInit() {
-    
+
     this.resetForm();
- 
+
   }
 
   resetForm(form? : NgForm){
@@ -55,9 +54,9 @@ constructor(private userservice : UserServiceService, private route : Router, pr
     }
   }
     getimage(){
-    for(var x =0;x < this.userArry.length; x++){ 
+    for(var x =0;x < this.userArry.length; x++){
         return this.userArry[x];
-      
+
     }
   }
 
@@ -89,10 +88,10 @@ this.user.Image = this.fileToUpload.name;
 
 
   onSubmit(form? : NgForm){
-    // NODE JS SERVER 
+    // NODE JS SERVER
     this.http.post(URL, this.fd).pipe(map((res:Response) => res.json())).subscribe(
       (success) => {
-           
+
      },
      (error) => alert(error));
 // C# BACK END
@@ -109,7 +108,7 @@ this.user.Image = this.fileToUpload.name;
         this.toaster.error('the Emial you have Entered  already exist');
         });
 
-       
+
   }
 
 }

@@ -1,12 +1,11 @@
 import { Component, OnInit,ElementRef, Input } from '@angular/core';
-import {AccommodationModel} from '../pick-up-models/accommodation-model'; 
+import {AccommodationModel} from '../pick-up-models/accommodation-model';
 import {AccommodationServiceService} from '../pick-up-services/accommodation-service.service';
 import {Router} from'@angular/router';
 import {ToastrService} from 'ngx-toastr';
 import {NgForm} from '@angular/forms';
 import {  FileUploader } from 'ng2-file-upload/ng2-file-upload';
 import { HttpClient } from '@angular//common/http';
-import "rxjs/add/operator/do";
 import { map,mergeMap} from 'rxjs/operators';
 const URL = 'http://localhost:3000/files';
 
@@ -17,7 +16,7 @@ const URL = 'http://localhost:3000/files';
   providers : [AccommodationServiceService]
 })
 export class AddAccommodationComponent implements OnInit {
-  
+
   accomodationmodel : AccommodationModel;
   Imageurl : string = "/assets/default_profile_image.png";
   imageRoom : string = "/assets/default_profile_image.png";
@@ -39,7 +38,7 @@ export class AddAccommodationComponent implements OnInit {
     this.accomodationservice.getAccommodation().subscribe((data:any) => { this.accomodationArray = data});
     this.resetForm();
   }
- 
+
   resetForm(form? : NgForm){
 
     if(form != null)
@@ -131,11 +130,11 @@ export class AddAccommodationComponent implements OnInit {
   }
 
   onSubmit(form? : NgForm){
-  
-    // NODE JS SERVER 
+
+    // NODE JS SERVER
     this.http.post(URL, this.fd).pipe(map((res:Response) => res.json())).subscribe(
       (success) => {
-           
+
      },
      (error) => alert(error));
 // C# BACK END
@@ -145,14 +144,14 @@ export class AddAccommodationComponent implements OnInit {
        this.resetForm(form);
         this.toaster.success('your Service details are successfully saved');
         location.reload();
-       }); 
+       });
   }
 
   UpdateAccommodation(form? : NgForm){
 
     this.http.post(URL, this.fd).pipe(map((res:Response) => res.json())).subscribe(
       (success) => {
-           
+
      },
      (error) => alert(error));
 

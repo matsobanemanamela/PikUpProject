@@ -5,7 +5,6 @@ import {Router} from'@angular/router';
 import {ToastrService} from 'ngx-toastr';
 import {NgForm} from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import "rxjs/add/operator/do";
 import { map,mergeMap} from 'rxjs/operators';
 const URL = 'http://localhost:3000/files';
 
@@ -26,7 +25,7 @@ export class AddTransportComponent implements OnInit {
   constructor(private transportservice : TransportServiceService,private toaster : ToastrService,private route : Router,private http: HttpClient ) { }
 
   ngOnInit() {
-    
+
    this.transportservice.getallthetransport().subscribe((data:any) => { this.transportmodelList = data});
    this.transportservice.gettransport().subscribe((data:any) => { this.transportmodelList = data});
  this.resetForm();
@@ -72,9 +71,9 @@ export class AddTransportComponent implements OnInit {
 
     onSubmit(form? : NgForm){
 
-    // NODE JS SERVER 
+    // NODE JS SERVER
     this.http.post(URL, this.fd).pipe(map((res:Response) => res.json())).subscribe(
-          (success) => {         
+          (success) => {
            },
        (error) => alert(error));
     // C# BACK END
@@ -84,13 +83,13 @@ export class AddTransportComponent implements OnInit {
          this.resetForm(form);
           this.toaster.success('your Transportation details are successfully saved');
           location.reload();
-         }); 
+         });
     }
-  
+
     UpdateTransport(form? : NgForm){
-  // NODE JS SERVER 
+  // NODE JS SERVER
   this.http.post(URL, this.fd).pipe(map((res:Response) => res.json())).subscribe(
-    (success) => {         
+    (success) => {
      },
  (error) => alert(error));
 // C# BACK END
@@ -104,12 +103,12 @@ export class AddTransportComponent implements OnInit {
       ;
       })
     }
-  
+
     showForEdit(transportmodels: TransportModel){
       this.transportmodel = Object.assign({}, transportmodels);
     }
-  
-  
+
+
     onDelete(id : number){
       if(confirm("are you sure you want to delete?")==true){
         this.transportservice.DeleteProduct(id).subscribe(x =>{

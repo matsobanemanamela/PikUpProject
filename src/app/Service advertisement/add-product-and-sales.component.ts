@@ -5,7 +5,6 @@ import {Router} from'@angular/router';
 import {ToastrService} from 'ngx-toastr';
 import {NgForm} from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
-import "rxjs/add/operator/do";
 import { map,mergeMap} from 'rxjs/operators';
 const URL = 'http://localhost:3000/files';
 
@@ -27,11 +26,11 @@ imageUrl : string = "/assets/default_profile_image.png";
   constructor(private servicesservice : ServicesService,private toaster : ToastrService,private route : Router,private http: HttpClient, private el: ElementRef) { }
 
   ngOnInit() {
-  
+
     this.servicesservice.getallService().subscribe((data:any) => { this.servicelist = data});
     this.servicesservice.getService().subscribe((data:any) => { this.servicelist = data});
     this.resetForm();
-  
+
   }
 
   resetForm(form? : NgForm){
@@ -68,11 +67,11 @@ imageUrl : string = "/assets/default_profile_image.png";
   }
 
     onSubmit(form? : NgForm){
-  
-      // NODE JS SERVER 
+
+      // NODE JS SERVER
       this.http.post(URL, this.fd).pipe(map((res:Response) => res.json())).subscribe(
         (success) => {
-             
+
        },
        (error) => alert(error));
 // C# BACK END
@@ -82,14 +81,14 @@ imageUrl : string = "/assets/default_profile_image.png";
          this.resetForm(form);
           this.toaster.success('your Service details are successfully saved');
           location.reload();
-         }); 
+         });
     }
-  
+
     UpdateService(form? : NgForm){
 
       this.http.post(URL, this.fd).pipe(map((res:Response) => res.json())).subscribe(
         (success) => {
-             
+
        },
        (error) => alert(error));
 
@@ -102,12 +101,12 @@ imageUrl : string = "/assets/default_profile_image.png";
       ;
       })
     }
-  
+
     showForEdit(servicemodel : ServiceModel){
       this.servicemodel = Object.assign({}, servicemodel);
     }
-  
-  
+
+
     onDelete(id : number){
       if(confirm("are you sure you want to delete?")==true){
         this.servicesservice.DeleteService(id).subscribe(x =>{

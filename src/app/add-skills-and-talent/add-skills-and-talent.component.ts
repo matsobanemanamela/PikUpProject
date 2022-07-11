@@ -5,7 +5,6 @@ import {NgForm} from '@angular/forms';
 import {TalentAndSkillsModel} from '../pick-up-models/talent-and-skills-model';
 import {SkillsAndTalentServiceService} from '../pick-up-services/skills-and-talent-service.service';
 import { HttpClient } from '@angular/common/http';
-import "rxjs/add/operator/do";
 import { map,mergeMap} from 'rxjs/operators';
 const URL = 'http://localhost:3000/files';
 
@@ -46,7 +45,7 @@ export class AddSkillsAndTalentComponent implements OnInit {
     Video : '',
     Song : '',
     Comment : ''
-    
+
     }
   }
 
@@ -66,7 +65,7 @@ export class AddSkillsAndTalentComponent implements OnInit {
 
   this.talentandskillmodel.Image = this.fileToUpload.name;
   }
-  
+
    handleFileInputVideo(file : FileList){
 
     this.fileToUpload = file.item(0);
@@ -78,7 +77,7 @@ export class AddSkillsAndTalentComponent implements OnInit {
   console.log(this.fileToUpload.name)
   this.talentandskillmodel.Video = this.fileToUpload.name;
   }
- 
+
   handleFileInputMP3(file : FileList){
 
     this.fileToUpload = file.item(0);
@@ -91,12 +90,12 @@ export class AddSkillsAndTalentComponent implements OnInit {
   this.talentandskillmodel.Song = this.fileToUpload.name;
   }
 
-  
+
         onSubmit(form? : NgForm){
-      // NODE JS SERVER 
+      // NODE JS SERVER
       this.http.post(URL, this.fd).pipe(map((res:Response) => res.json())).subscribe(
         (success) => {
-             
+
        },
        (error) => alert(error));
 // C# BACK END
@@ -107,14 +106,14 @@ export class AddSkillsAndTalentComponent implements OnInit {
              this.resetForm(form);
               this.toaster.success('your Service details are successfully saved');
               location.reload();
-             }); 
+             });
         }
-      
+
         UpdateSkillsandTalent(form? : NgForm){
-            // NODE JS SERVER 
+            // NODE JS SERVER
             this.http.post(URL, this.fd).pipe(map((res:Response) => res.json())).subscribe(
               (success) => {
-                   
+
              },
              (error) => alert(error));
       // C# BACK END
@@ -128,12 +127,12 @@ export class AddSkillsAndTalentComponent implements OnInit {
           ;
           })
         }
-      
+
         showForEdit(talentandskillmodels : TalentAndSkillsModel){
           this.talentandskillmodel = Object.assign({}, talentandskillmodels);
         }
-      
-      
+
+
         onDelete(id : number){
           if(confirm("are you sure you want to delete?")==true){
             this.skillsandtalentservice.Deletetalentandskill(id).subscribe(x =>{

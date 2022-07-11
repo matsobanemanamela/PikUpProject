@@ -5,7 +5,6 @@ import {BooksService} from '../pick-up-services/books.service';
 import {Router} from'@angular/router';
 import {ToastrService} from 'ngx-toastr';
 import { HttpClient} from '@angular/common/http';
-import "rxjs/add/operator/do";
 import { map,mergeMap} from 'rxjs/operators';
 const URL = 'http://localhost:3000/files';
 
@@ -46,7 +45,7 @@ fd = new FormData();
       neworused: '',
       Image : '',
       Price : 0,
-      Comment : '' 
+      Comment : ''
     }
 
   }
@@ -63,7 +62,7 @@ fd = new FormData();
   this.bookmodel.Image =  this.fileToUpload.name;
   }
 
-  
+
   createFormData(event) {
     this.selectedFile = <File>event.target.files[0];
     this.fd.append('photo', this.selectedFile, this.selectedFile.name);
@@ -73,10 +72,10 @@ fd = new FormData();
 
   onSubmit(form? : NgForm){
 
-          // NODE JS SERVER 
+          // NODE JS SERVER
      this.http.post(URL, this.fd).pipe(map((res:Response) => res.json())).subscribe(
             (success) => {
-                 
+
            },
            (error) => alert(error));
     // C# BACK END
@@ -87,14 +86,14 @@ fd = new FormData();
        this.resetForm(form);
         this.toaster.success('your Books details are successfully saved');
         location.reload();
-       }); 
+       });
   }
 
   UpdateBooking(form? : NgForm){
-         // NODE JS SERVER 
+         // NODE JS SERVER
          this.http.post(URL, this.fd).pipe(map((res:Response) => res.json())).subscribe(
           (success) => {
-               
+
          },
          (error) => alert(error));
   // C# BACK END update

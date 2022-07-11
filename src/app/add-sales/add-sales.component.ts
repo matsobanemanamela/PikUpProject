@@ -6,7 +6,6 @@ import {ProductModel} from '../pick-up-models/product-model';
 import {ProductServiceService} from '../pick-up-services/product-service.service';
 import { HttpClient } from '@angular/common/http';
 import {  FileUploader } from 'ng2-file-upload/ng2-file-upload';
-import "rxjs/add/operator/do";
 import { map,mergeMap} from 'rxjs/operators';
 const URL = 'http://localhost:3000/files';
 
@@ -54,7 +53,7 @@ export class AddSalesComponent implements OnInit {
     ProductPrice : 0,
     Comment : ''
 
-   } 
+   }
 }
 
 createFormData(event) {
@@ -77,10 +76,10 @@ this.productmodel.ProductImage = this.fileToUpload.name;
 
 
   onSubmit(form? : NgForm){
-         // NODE JS SERVER 
+         // NODE JS SERVER
          this.http.post(URL, this.fd).pipe(map((res:Response) => res.json())).subscribe(
           (success) => {
-               
+
          },
          (error) => alert(error));
   // C# BACK END
@@ -91,14 +90,14 @@ this.productmodel.ProductImage = this.fileToUpload.name;
        this.resetForm(form);
         this.toaster.success('your Books details are successfully saved');
         location.reload();
-       }); 
+       });
   }
 
   UpdateProduct(form? : NgForm){
-         // NODE JS SERVER 
+         // NODE JS SERVER
      this.http.post(URL, this.fd).pipe(map((res:Response) => res.json())).subscribe(
             (success) => {
-                 
+
            },
            (error) => alert(error));
     // C# BACK END

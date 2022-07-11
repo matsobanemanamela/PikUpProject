@@ -5,7 +5,6 @@ import {Router} from'@angular/router';
 import {ToastrService} from 'ngx-toastr';
 import {NgForm} from '@angular/forms';
 import {HttpClient } from '@angular/common/http';
-import "rxjs/add/operator/do";
 import { map,mergeMap} from 'rxjs/operators';
 const URL = 'http://localhost:3000/files';
 
@@ -36,7 +35,7 @@ constructor(private userservice : UserServiceService, private route : Router, pr
     })
 
     this.userservice.getuserbyID(this.id);
-     
+
 this.userservice.getspecifiedcustomer();
 
 this.userservice.specifiedCustomer.subscribe((classtype:Array<UserModel>)=>{
@@ -92,10 +91,10 @@ this.user.Image = this.fileToUpload.name;
 
 
 onSubmit(form? : NgForm){
-    // NODE JS SERVER 
+    // NODE JS SERVER
     this.http.post(URL, this.fd).pipe(map((res:Response) => res.json())).subscribe(
       (success) => {
-           
+
      },
      (error) => alert(error));
 // C# BACK END

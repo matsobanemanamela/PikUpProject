@@ -1,74 +1,51 @@
 import { Injectable } from '@angular/core';
 import {LikeSkillsTalentModel} from '../pick-up-likes-models/like-skills-talent-model';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import{Http,Response, Headers,RequestOptions, RequestMethod} from '@angular/http';
 import { Observable, Subject, ReplaySubject, from, of, range, BehaviorSubject} from 'rxjs';
-import { map,mergeMap} from 'rxjs/operators';
+
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class LikeSkillsTalentService {
+
   readonly rootUrl = "http://localhost:52539/";
 
-  getspecifiedLikeSkillsTalentModel : Subject<Array<LikeSkillsTalentModel>> = new BehaviorSubject<Array<LikeSkillsTalentModel>>([]);
-  selectedLikeSkillsTalentModel : LikeSkillsTalentModel; 
   likeSkillsTalentModel : LikeSkillsTalentModel;
-  LikeSkillsTalentModellist : LikeSkillsTalentModel[];
-  allLikeSkillsTalentModellist : LikeSkillsTalentModel[];
 
-  constructor(private http : Http, private httpClient : HttpClient) { }
+  constructor(private httpClient : HttpClient) { }
 
   PostLikeSkillsTalent(likeSkillsTalentModel : LikeSkillsTalentModel){
     var body = JSON.stringify(likeSkillsTalentModel);
-    var headersOption = new Headers({'Content-Type':'application/json'});
-    var requestOptions = new RequestOptions({method : RequestMethod.Post,headers : headersOption});
-     return this.http.post(this.rootUrl + 'api/LikeSkillsTalents', body, requestOptions);
+    var headersOption = new HttpHeaders({'Content-Type':'application/json'});
+     return this.httpClient.post(this.rootUrl + 'api/LikeSkillsTalents', body, {headers : headersOption});
     }
 
-    getallLikeSkillsTalent()
+    getallLikeSkillsTalent() : Observable<LikeSkillsTalentModel[]>
     {
-      return this.httpClient.get(this.rootUrl+'api/LikeSkillsTalents').pipe(map((data:Response)=> data.json()));
+      return this.httpClient.get<LikeSkillsTalentModel[]>(this.rootUrl+'api/LikeSkillsTalents');
     }
-////////////////get all the LikeProduct list method///////////////////////////////
 
-      getalltheLikeSkillsTalent(){
-        return this.http.get(this.rootUrl+'api/LikeSkillsTalents').pipe(map((data : Response)=>{
-          return data.json() as LikeSkillsTalentModel[];
-        })).toPromise().then(x => {
-          this.LikeSkillsTalentModellist = x;
-        })
-      }
      // get LikeProduct information
 
-    getLikeSkillsTalent(){
-        return this.http.get(this.rootUrl+'api/GetLikeSkillsTalents?id='+localStorage.getItem("")).pipe(map((data : Response)=>{
-          return data.json() as LikeSkillsTalentModel[];
-        })).toPromise().then(x => {
-          this.allLikeSkillsTalentModellist = x;
-        })
+    getLikeSkillsTalent(): Observable<LikeSkillsTalentModel[]>
+    {
+        return this.httpClient.get<LikeSkillsTalentModel[]>(this.rootUrl+'api/GetLikeSkillsTalents?id='+localStorage.getItem(""));
     }
-    
-      getspecifiedLikeSkillsTalent(){
-        return this.http.get(this.rootUrl+'api/LikeSkillsTalents').pipe(map((data : Response)=>{
-          return data.json()
-        })).subscribe((data : any)=>{
-          this.getspecifiedLikeSkillsTalentModel.next(data);
-        })
-      }
+
 
       //update LikeProduct
 
     UpdateLikeSkillsTalent(id,likeSkillsTalentModel){
         var body = JSON.stringify(likeSkillsTalentModel);
-        var headerOptions = new Headers({'Content-Type': 'application/json'});
-        var requestOptions = new RequestOptions({method: RequestMethod.Put,headers: headerOptions});
-        return this.http.put(this.rootUrl +'api/LikeSkillsTalents/'+id,body,requestOptions).pipe(map(res =>res.json()));
+        var headersOption = new HttpHeaders({'Content-Type':'application/json'});
+        return this.httpClient.put(this.rootUrl +'api/LikeSkillsTalents/'+id,body,{headers : headersOption});
       }
 
       DeleteLikeSkillsTalent(id : number)
       {
-        return this.http.delete(this.rootUrl + 'api/LikeSkillsTalents/'+id).pipe(map((res => res.json())));
+        return this.httpClient.delete(this.rootUrl + 'api/LikeSkillsTalents/'+id);
       }
 
 }

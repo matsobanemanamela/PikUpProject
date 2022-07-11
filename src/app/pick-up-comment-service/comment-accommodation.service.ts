@@ -27,8 +27,9 @@ export class CommentAccommodationService {
     }
 
      // get user information
-      getCommentAccommodation(){
-        return this.httpClient.get(this.rootUrl+'api/GetCommentAccommodations?id='+localStorage.getItem("example1"))
+      getCommentAccommodation() : Observable<CommentAccommodationModel[]>
+      {
+        return this.httpClient.get<CommentAccommodationModel[]>(this.rootUrl+'api/GetCommentAccommodations?id='+localStorage.getItem("example1"))
       }
 
       //update user profile
